@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://nexxusmart.vercel.app/'], // Vite default port & fallback
+    origin: ['https://nexxusmart.vercel.app/'], // Vite default port & fallback
     credentials: true
 }));
 app.use(helmet());
