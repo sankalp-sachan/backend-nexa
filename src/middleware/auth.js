@@ -3,8 +3,7 @@ const User = require('../models/User');
 
 exports.isAuthenticatedUser = async (req, res, next) => {
     const { token } = req.cookies || {};
-    // Note: req.cookies requires cookie-parser. I didn't add cookie-parser to app.js yet.
-    // Alternatively, check header Authorization: Bearer <token>
+    // Check header Authorization: Bearer <token>
 
     let tokenToVerify = token;
 

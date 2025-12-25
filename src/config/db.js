@@ -10,8 +10,7 @@ const connectDB = async () => {
     }
 };
 
-// Check and remove the problematic index
-// This is a temporary fix that runs once connected
+// Check and remove the problematic index if it exists
 mongoose.connection.once('open', async () => {
     try {
         const collection = mongoose.connection.collection('products');
@@ -21,12 +20,13 @@ mongoose.connection.once('open', async () => {
                 const idIndex = indexes.find(idx => idx && idx.name === 'id_1');
                 if (idIndex) {
                     await collection.dropIndex('id_1');
-                    console.log('Dropped problematic index: id_1');
+                    console.info('System: Cleaned up legacy index "id_1" from products collection');
                 }
             }
         }
     } catch (err) {
-        console.log('Index check failed (non-fatal):', err.message);
+        // Index check failure is not critical for startup
+        console.warn('Warning: Database index check skipped:', err.message);
     }
 });
 

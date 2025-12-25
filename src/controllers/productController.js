@@ -46,8 +46,6 @@ exports.getProductDetails = async (req, res) => {
 // Admin Routes
 exports.createProduct = async (req, res) => {
     try {
-        console.log("Create Product Body:", req.body);
-
         req.body.user = req.user.id; // Add admin user to product
         const product = await Product.create(req.body);
 

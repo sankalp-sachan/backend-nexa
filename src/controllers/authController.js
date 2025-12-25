@@ -59,7 +59,6 @@ exports.registerUser = async (req, res) => {
             });
         } catch (error) {
             console.error('Email send failed:', error.message);
-            console.log('DEMO MODE - OTP:', otp);
             // Don't fail the request, just return success with a warning or just success for demo
             res.status(200).json({
                 success: true,
@@ -184,7 +183,6 @@ exports.forgotPassword = async (req, res) => {
             await user.save({ validateBeforeSave: false });
 
             // DEMO MODE fallback
-            console.log('DEMO MODE - Reset OTP:', otp);
             res.status(200).json({
                 success: true,
                 message: `Email could not be sent. Demo OTP: ${otp}`

@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: ['https://nexxusmart.vercel.app/'], // Vite default port & fallback
+    origin: ['http://localhost:5173', 'https://localhost:5174', 'https://nexa-sigma-ten.vercel.app/'], // Vite default port & fallback
     credentials: true
 }));
 app.use(helmet());
