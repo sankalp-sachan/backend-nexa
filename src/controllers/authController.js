@@ -129,9 +129,11 @@ exports.loginUser = async (req, res) => {
 };
 
 exports.logout = async (req, res) => {
-    res.cookie('token', 'none', {
-        expires: new Date(Date.now() + 10 * 1000),
-        httpOnly: true
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
     res.status(200).json({
@@ -229,3 +231,4 @@ exports.getUserProfile = async (req, res) => {
         user
     });
 };
+
